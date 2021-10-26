@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 const GetWallet = () => {
   const [currentAccount, setCurrentAccount] = useState(""); // set current account
-
   const displayAccount = () => {
     // display the current account
     alert(`this is the wallet you connected! ${currentAccount}`);
@@ -32,27 +31,29 @@ const GetWallet = () => {
     }
   };
 
-  const connectWallet = async () => {
+  const connectWallet = async () => { // connect to the wallet
     try {
       const { ethereum } = window;
 
-      if (!ethereum) {
+      if (!ethereum) { // if the user is not running metamask
         alert("Get MetaMask!");
         return;
       }
 
-      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
-      console.log("Connected", accounts[0]);
-      setCurrentAccount(accounts[0]); 
+      console.log("Connected", accounts[0]); // log the account
+      setCurrentAccount(accounts[0]);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     checkIfWalletIsConnected();
-  }, [])
+  }, []);
 
   // Render one button or another depending on the state
   if (!currentAccount) {
