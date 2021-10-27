@@ -1,4 +1,9 @@
-# Basic Sample Hardhat Project
+# WavePortal Web3
+
+- Simple page that runs on web3 with metamask and ropsten testnet
+
+## Commands
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -26,3 +31,14 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+### Stack used
+
+- React
+- Solidity
+- Javascript
+- Html
+- Css
+- Hardhat
+- Alchemy
+- Nodejs
