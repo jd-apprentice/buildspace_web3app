@@ -3,7 +3,7 @@ import abi from "../../utils/WavePortal.json"
 
 const Wave = async () => {
 
-    const contractAddress = "0x5512c80a869b7622AB8104A16594b0265f26fe0E"; // contract address
+    const contractAddress = "0x3b7cF25Ed73a4d4d285196DDe2201f8E5633b0c6"; // contract address
     const contractABI = abi.abi; // contract abi
 
     try {
