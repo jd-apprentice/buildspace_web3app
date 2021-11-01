@@ -27,8 +27,8 @@ contract WavePortal {
         waves.push(
             Wave({
                 waver: msg.sender,
-                message: _message,
-                timestamp: block.timestamp
+                timestamp: block.timestamp,
+                message: _message
             })
         );
         emit NewWave(msg.sender, block.timestamp, _message);
