@@ -1,7 +1,7 @@
 import abi from "../../utils/WavePortal.json";
 import { ethers } from "ethers";
 
-const wave = async (Message) => {
+export const wave = async (Message) => {
   const contractAddress = "0x9b131E636E29C96d0836956759c3f7aA0E9381e1";
   const contractABI = abi.abi;
 
@@ -30,5 +30,3 @@ const wave = async (Message) => {
     console.log(error);
   }
 };
-
-export default wave;
