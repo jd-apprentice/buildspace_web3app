@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
-import wave from "../wave/wave";
+import { wave } from "../wave/wave";
 import WalletIcon from "../icon/wallet";
 import MessageIcon from "../icon/message";
 
