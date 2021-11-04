@@ -1,7 +1,7 @@
 import abi from "../../utils/WavePortal.json";
 import { ethers } from "ethers";
 
-const wave = async () => {
+const wave = async (Message) => {
   const contractAddress = "0x9b131E636E29C96d0836956759c3f7aA0E9381e1";
   const contractABI = abi.abi;
 
@@ -18,14 +18,9 @@ const wave = async () => {
       );
 
       let count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
-
-      const waveTxn = await wavePortalContract.makeWave("Hola");
-      console.log("Mining...", waveTxn.hash);
-
+      const waveTxn = await wavePortalContract.makeWave(Message);
       await waveTxn.wait();
       console.log("Mined -- ", waveTxn.hash);
-
       count = await wavePortalContract.getTotalWaves();
       console.log("Retrieved total wave count...", count.toNumber());
     } else {

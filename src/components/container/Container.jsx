@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import getSocials from "../socials/Socials";
 import checkIfWalletIsConnected from "../checkWallet/checkWallet";
 import connectWallet from "../connectWallet/connectWallet";
@@ -6,36 +6,32 @@ import useCheck from "../../hooks/useCheck";
 import wave from "../wave/wave";
 import getAllWaves from "../getWaves/getWaves";
 import abi from "../../utils/WavePortal.json";
-
+import InputForm from "../inputForm/form";
 
 const Container = ({ contractAddress }) => {
-  const contractABI = abi.abi; // ABI of the contract
-  const Account = useCheck(); // Get the account from the provider
-  const allWaves = getAllWaves(contractAddress, contractABI); // Get all waves from the contract
-  const arrWaves = [];
-
-  // push waves to array
-  allWaves.then(res => {
-    res.forEach(element => {
-      arrWaves.push(element);
-    });
-  });
+  const contractABI = abi.abi;
+  const Account = useCheck();
+  const [allWaves, setAllWaves] = useState([]);
+  const [currentAccount, setCurrentAccount] = useState(null);
 
   useEffect(() => {
+    getAllWaves(contractAddress, contractABI).then((res) => {
+      setAllWaves(res);
+    });
+    Account.then((res) => {
+      setCurrentAccount(res);
+    });
     checkIfWalletIsConnected();
-  }, []);
+  }, [contractAddress, contractABI, Account]);
 
   return (
     <div className="mainContainer">
       <div className="dataContainer">
-        <div className="header">Hey there welcome to my portal</div>
+        <div className="header">👋 Hey there welcome to my portal</div>
         <div className="bio">
-          I am jonathan and I am a wave engineer. I am currently working at
+          I am Jonathan and I am a wave engineer. I am currently working at
           Wave.
         </div>
-        <button className="generalButton" onClick={wave}>
-          Wave at Me
-        </button>
         <button className="generalButton" onClick={getSocials}>
           Visit my Github
         </button>
@@ -44,13 +40,22 @@ const Container = ({ contractAddress }) => {
             Connect Wallet
           </button>
         )}
-        {arrWaves.map((wave, index) => {
+        <InputForm wallet={currentAccount} />
+        {allWaves.map((wave, index) => {
           return (
-            <div key={index} style={{ backgroundColor: "OldLace", marginTop: "16px", padding: "8px" }}>
+            <div
+              key={index}
+              style={{
+                backgroundColor: "OldLace",
+                marginTop: "16px",
+                padding: "8px",
+              }}
+            >
               <div>Address: {wave.address}</div>
               <div>Message: {wave.message}</div>
               <div>Time: {wave.timestamp.toString()}</div>
-            </div>)
+            </div>
+          );
         })}
       </div>
     </div>
