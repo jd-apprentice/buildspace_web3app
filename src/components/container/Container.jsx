@@ -5,7 +5,7 @@ import connectWallet from "../connectWallet/connectWallet";
 import useCheck from "../../hooks/useCheck";
 import getAllWaves from "../getWaves/getWaves";
 import abi from "../../utils/WavePortal.json";
-import InputForm from "../inputForm/form";
+import InputForm from "../inputForm/InputForm";
 
 const Container = ({ contractAddress }) => {
   const contractABI = abi.abi;
