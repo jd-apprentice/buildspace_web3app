@@ -3,7 +3,6 @@ import getSocials from "../socials/Socials";
 import checkIfWalletIsConnected from "../checkWallet/checkWallet";
 import connectWallet from "../connectWallet/connectWallet";
 import useCheck from "../../hooks/useCheck";
-import wave from "../wave/wave";
 import getAllWaves from "../getWaves/getWaves";
 import abi from "../../utils/WavePortal.json";
 import InputForm from "../inputForm/form";
