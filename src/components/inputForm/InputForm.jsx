@@ -2,15 +2,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useState } from "react";
-import { wave } from "../wave/wave";
+import Wave from "../../components/wave/Wave.js";
 import WalletIcon from "../icon/wallet";
 import MessageIcon from "../icon/message";
+import { useState } from "react";
 
 const InputForm = (props) => {
   const [form, setForm] = useState(" ");
   const handleInput = (e) => setForm(e.target.value);
-  const handleSubmit = () => wave(form);
+  const handleSubmit = () => Wave(form);
 
   return (
     <Form>
