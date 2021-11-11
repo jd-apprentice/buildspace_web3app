@@ -6,6 +6,7 @@ import "hardhat/console.sol";
 
 contract WavePortal {
     uint256 totalWaves;
+    uint256 private seed;
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
@@ -17,21 +18,39 @@ contract WavePortal {
 
     Wave[] waves;
 
-    constructor() {
+    mapping(address => uint256) public lastWavedAt;
+
+    constructor() payable {
         console.log("Iniciando smart contract");
+        seed = (block.timestamp + block.difficulty) % 100;
     }
 
     function makeWave(string memory _message) public {
+        // We need to make sure the current timestamp is at least 15-minutes bigger than the last timestamp we stored
+        require(lastWavedAt[msg.sender] + 60 seconds < block.timestamp, "Must wait 60 seconds before waving again.");
+
+        // Update the current timestamp we have for the user
+        lastWavedAt[msg.sender] = block.timestamp;
+
+        // Wave Function
         totalWaves++;
         console.log("%s has waved!", msg.sender);
-        waves.push(
-            Wave({
-                waver: msg.sender,
-                timestamp: block.timestamp,
-                message: _message
-            })
-        );
-        emit NewWave(msg.sender, block.timestamp, _message);
+
+        waves.push(Wave(msg.sender, _message, block.timestamp));
+        seed = (block.difficulty + block.timestamp + seed) % 100; // Generate a new seed
+
+        // Chances of winning
+        if (seed <= 50) {
+            console.log("%s won!", msg.sender);
+            uint256 prizeAmount = 0.0001 ether;
+            require(
+                prizeAmount <= address(this).balance,
+                "Trying to withdraw more money than the contract has."
+            );
+            (bool success, ) = (msg.sender).call{value: prizeAmount}("");
+            require(success, "Failed to withdraw money from contract.");
+        }
+        emit NewWave(msg.sender, block.timestamp, _message); // Emit the wave
     }
 
     function getAllWaves() public view returns (Wave[] memory) {

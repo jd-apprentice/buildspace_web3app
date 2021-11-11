@@ -12,7 +12,7 @@ const useCheck = async () => {
     if (accounts.length !== 0) {
       // if the user has an account
       const account = accounts[0];
-      getAllWaves("0x9b131E636E29C96d0836956759c3f7aA0E9381e1", contractABI); // get all waves
+      getAllWaves("0x30590320C5E24759fc5BfB5145aFE1D98a5cB3e5", contractABI); // get all waves
       setCurrentAccount(account); // set current account
       return currentAccount;
     } else {

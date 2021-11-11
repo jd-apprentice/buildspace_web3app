@@ -5,7 +5,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <Container contractAddress="0x9b131E636E29C96d0836956759c3f7aA0E9381e1" />
+    <Container contractAddress="0xC32F206C48E0b79A912a9AA5DF5B5a94075F19e1" />
   );
 }
 

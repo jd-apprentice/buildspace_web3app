@@ -1,7 +1,7 @@
 import abi from "../../utils/WavePortal.json";
 import { ethers } from "ethers";
 
-const Wave = async (Message) => {
+const WaveButton = async () => {
   const contractAddress = "0xC32F206C48E0b79A912a9AA5DF5B5a94075F19e1";
   const contractABI = abi.abi;
 
@@ -18,7 +18,7 @@ const Wave = async (Message) => {
       );
 
       let count = await wavePortalContract.getTotalWaves();
-      const waveTxn = await wavePortalContract.makeWave(Message, { gasLimit: 300000 });
+      const waveTxn = await wavePortalContract.makeWave("Saludos para vos tambien!", { gasLimit: 300000 });
       await waveTxn.wait();
       console.log("Mined -- ", waveTxn.hash);
       count = await wavePortalContract.getTotalWaves();
@@ -31,4 +31,4 @@ const Wave = async (Message) => {
   }
 };
 
-export default Wave;
+export default WaveButton;

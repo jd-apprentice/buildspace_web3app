@@ -10,7 +10,7 @@ const checkIfWalletIsConnected = async () => {
     if (accounts.length !== 0) {
       // if the user has an account
       const account = accounts[0];
-      getAllWaves("0x9b131E636E29C96d0836956759c3f7aA0E9381e1", contractABI); // get all waves
+      getAllWaves("0xC32F206C48E0b79A912a9AA5DF5B5a94075F19e1", contractABI); // get all waves
       return account;
     } else {
       console.log("No authorized account found");

@@ -6,6 +6,7 @@ import useCheck from "../../hooks/useCheck";
 import getAllWaves from "../getWaves/getWaves";
 import abi from "../../utils/WavePortal.json";
 import InputForm from "../inputForm/InputForm";
+import WaveButton from "../wave/WaveButton"
 
 const Container = ({ contractAddress }) => {
   const contractABI = abi.abi;
@@ -31,6 +32,9 @@ const Container = ({ contractAddress }) => {
           I am Jonathan and I am a wave engineer. I am currently working at
           Wave.
         </div>
+        <button className="generalButton" onClick={WaveButton}>
+          Wave at Me
+        </button>
         <button className="generalButton" onClick={getSocials}>
           Visit my Github
         </button>
