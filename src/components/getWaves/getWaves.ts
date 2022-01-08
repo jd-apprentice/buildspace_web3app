@@ -1,8 +1,9 @@
 import { ethers } from "ethers";
 
-const getAllWaves = async (contractAddress, contractABI) => {
+const getAllWaves = async (contractAddress: string, contractABI: string) => {
   let allWaves = [];
   try {
+    // @ts-ignore
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
@@ -15,8 +16,8 @@ const getAllWaves = async (contractAddress, contractABI) => {
 
       const waves = await wavePortalContract.getAllWaves();
 
-      let wavesCleaned = [];
-      waves.forEach((wave) => {
+      let wavesCleaned: any[] = [];
+      waves.forEach((wave: { waver: any; timestamp: number; message: any; }) => {
         wavesCleaned.push({
           address: wave.waver,
           timestamp: new Date(wave.timestamp * 1000),

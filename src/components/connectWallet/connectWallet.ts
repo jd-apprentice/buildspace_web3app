@@ -2,6 +2,7 @@
 const connectWallet = async () => {
   // connect to the wallet
   try {
+    // @ts-ignore
     const { ethereum } = window;
 
     if (!ethereum) {
