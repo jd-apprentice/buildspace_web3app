@@ -4,6 +4,7 @@ const useConnect = async () => {
   const [currentAccount, setCurrentAccount] = useState("");
   // connect to the wallet
   try {
+    // @ts-ignore
     const { ethereum } = window;
 
     if (!ethereum) {

@@ -2,36 +2,35 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Wave from "../../components/wave/Wave.js";
-import WalletIcon from "../icon/wallet";
-import MessageIcon from "../icon/message";
-import { useState } from "react";
+import { Wave } from "../../utils/index";
+import { SetStateAction, useState } from "react";
 
-const InputForm = (props) => {
-  const [form, setForm] = useState(" ");
-  const handleInput = (e) => setForm(e.target.value);
+export const InputForm = ({ wallet }) => {
+  const [form, setForm] = useState();
+  const handleInput = (e?: { target: { value: SetStateAction<string> } }) =>
+    //@ts-ignore
+    setForm(e.target.value);
   const handleSubmit = () => Wave(form);
 
   return (
     <Form>
       <Form.Group as={Row} className="my-3" controlId="formPlaintextEmail">
         <Form.Label column sm="2">
-          <WalletIcon /> Wallet
+          <i className="bi bi-wallet2">Wallet</i>
         </Form.Label>
         <Col sm="10">
-          <Form.Control plaintext readOnly defaultValue={props.wallet} />
+          <Form.Control plaintext readOnly defaultValue={wallet} />
         </Col>
       </Form.Group>
-
       <Form.Group as={Row} className="mb-3">
         <Form.Label column sm="2">
-         <MessageIcon /> Send
+          <i className="bi bi-send">Send</i>
         </Form.Label>
         <Col sm="10">
           <Form.Control
-            onChange={handleInput}
             type="text"
             placeholder="Enter your message"
+            onChange={handleInput}
           />
         </Col>
         <Button
@@ -45,5 +44,3 @@ const InputForm = (props) => {
     </Form>
   );
 };
-
-export default InputForm;
