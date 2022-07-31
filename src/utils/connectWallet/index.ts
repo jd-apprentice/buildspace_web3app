@@ -1,5 +1,5 @@
 // Connect to the contract
-const connectWallet = async () => {
+export const connectWallet = async () => {
   // connect to the wallet
   try {
     // @ts-ignore
@@ -20,5 +20,3 @@ const connectWallet = async () => {
     console.log(error);
   }
 };
-
-export default connectWallet;

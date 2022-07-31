@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 
-const getAllWaves = async (contractAddress: string, contractABI: string) => {
+export const getAllWaves = async (contractAddress: string, contractABI: string) => {
   let allWaves = [];
   try {
     // @ts-ignore
@@ -34,5 +34,3 @@ const getAllWaves = async (contractAddress: string, contractABI: string) => {
   }
   return allWaves;
 };
-
-export default getAllWaves;

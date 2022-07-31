@@ -1,7 +1,7 @@
-import abi from "../../utils/WavePortal.json";
+import abi from "../WavePortal.json";
 import { ethers } from "ethers";
 
-const Wave = async (Message: string) => {
+export const Wave = async (Message: string) => {
   const contractAddress = "0xC32F206C48E0b79A912a9AA5DF5B5a94075F19e1";
   const contractABI = abi.abi;
 
@@ -31,5 +31,3 @@ const Wave = async (Message: string) => {
     console.log(error);
   }
 };
-
-export { Wave };
