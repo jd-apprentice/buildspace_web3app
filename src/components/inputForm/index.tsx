@@ -2,15 +2,19 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Wave } from "../../utils/index";
-import { SetStateAction, useState } from "react";
+import { Waifu } from "../../utils/index";
+import { ChangeEvent, useState } from "react";
+import { FormControl } from "react-bootstrap";
 
 export const InputForm = ({ wallet }) => {
-  const [form, setForm] = useState();
-  const handleInput = (e?: { target: { value: SetStateAction<string> } }) =>
-    //@ts-ignore
-    setForm(e.target.value);
-  const handleSubmit = () => Wave(form);
+  const [form, setForm] = useState<any>();
+  const handleSubmit = () => Waifu(form);
+
+  const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setForm(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   return (
     <Form>
@@ -27,10 +31,11 @@ export const InputForm = ({ wallet }) => {
           <i className="bi bi-send">Send</i>
         </Form.Label>
         <Col sm="10">
-          <Form.Control
-            type="text"
-            placeholder="Enter your message"
-            onChange={handleInput}
+          <FormControl
+            type="file"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onImageChange(e)
+            }
           />
         </Col>
         <Button

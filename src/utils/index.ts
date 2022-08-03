@@ -1,5 +1,5 @@
 export * from "./checkWallet/index";
 export * from "./connectWallet/index";
-export * from "./getWaves/index";
+export * from "./getWaifus/index";
 export * from "./socials/index";
-export * from "./wave/index";
+export * from "./waifu/index";
