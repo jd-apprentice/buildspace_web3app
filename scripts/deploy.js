@@ -1,12 +1,10 @@
 const main = async () => {
-  const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
-  const waveContract = await waveContractFactory.deploy({
-    value: hre.ethers.utils.parseEther('0.001'),
-  });
+  const waifuContractFactory = await hre.ethers.getContractFactory('WaifuPortal');
+  const waifuContract = await waifuContractFactory.deploy();
 
-  await waveContract.deployed();
+  await waifuContract.deployed();
 
-  console.log('WavePortal address: ', waveContract.address);
+  console.log('WaifuPortal address: ', waifuContract.address);
   };
   
   const runMain = async () => {
